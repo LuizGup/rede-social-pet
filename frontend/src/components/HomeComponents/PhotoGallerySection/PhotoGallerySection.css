@@ -1,0 +1,20 @@
+.photo-gallery-section{
+    background-color: var(--cinza-claro);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 3vw;
+}
+
+.photo-gallery-section-text{
+    text-align: center;
+    width: 50%;
+    padding: 40px;
+}
+
+.photo-gallery-section-text h3{
+    color: var(--azul-primario) !important;
+    font-weight: bold !important;
+}

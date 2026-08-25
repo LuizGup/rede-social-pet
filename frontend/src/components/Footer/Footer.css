@@ -1,0 +1,8 @@
+#footer{
+    color: var(--branco);
+    background-color: var(--azul-primario);
+}
+
+#LogoFooter{
+    width: 30vh ;
+} 

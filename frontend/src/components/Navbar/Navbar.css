@@ -1,0 +1,54 @@
+#navbar-container {
+    background-color: var(--branco);
+    border-bottom: 1px solid rgba(93, 93, 93, 0.2) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-nav {
+    column-gap: 40px;
+}
+
+.navbar-img {
+    height: 100px !important;
+    width: auto !important;
+}
+
+.navbar-link{
+  background:
+    linear-gradient(
+      to right,
+      rgba(74, 144, 178, 0),
+      rgba(74, 144, 178, 0)
+    ),
+    linear-gradient(
+      to right,
+      rgba(74, 144, 178, 1),
+      rgba(74, 144, 178, 1)
+  ) !important;
+  background-size: 100% 3px, 0 3px !important;
+  background-position: 100% 100%, 0 100% !important;
+  background-repeat: no-repeat !important;
+  transition: background-size 400ms !important;
+}
+
+.navbar-link:hover{
+  background-size: 0 3px, 100% 3px !important;
+}
+
+.logo-pequena {
+    display: none !important;
+}
+
+/* Mostra a logo pequena e esconde a grande em telas menores */
+@media (max-width: 620px) {
+    .logo-grande {
+        display: none !important;
+    }
+
+    .logo-pequena {
+        display: block !important;
+        height: 4rem !important;
+        width: auto !important;
+    }
+
+}

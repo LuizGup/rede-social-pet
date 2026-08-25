@@ -1,0 +1,23 @@
+.custom-title{
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.custom-title h1{
+    color: var(--azul-primario);
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.animal-adoption-main{
+    background-color: var(--cinza-claro);
+    padding: 1rem 7rem;
+}
+
+
+.filter-container {
+  background-color: #f8f9fa; /* Um cinza bem claro para destacar a área */
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}

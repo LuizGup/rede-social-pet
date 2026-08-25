@@ -1,0 +1,68 @@
+.signUp-main {
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--cinza-claro);
+}
+
+.container-signUp {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    background-color: var(--branco-puro);
+    border-radius: 10px;
+    box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.3); 
+    overflow: hidden;
+}
+
+.input-fields {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 15px;
+}
+
+.custom-title p{
+    padding: 0px 15px;
+}
+
+.container-signUp img {
+    flex: 1;
+    width: 30%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center; /*ajuste na imagem*/
+}
+
+.input-signUp{
+    width: 80%;
+}
+
+.btn-signUp{
+    background-color: var(--azul-medio) !important;
+    color: var(--branco-puro) !important;
+    width: 40%;
+}
+
+.btn-signUp:hover{
+    background-color: var(--azul-primario) !important;
+    color: var(--cinza-claro) !important;
+}
+
+
+/* até 800px a imagem não aparece */
+@media (max-width: 800px) {
+    .container-signUp img {
+        display: none !important;
+    }
+
+    .container-signUp {
+        width: 75%;
+    }
+
+}

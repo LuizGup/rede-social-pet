@@ -51,11 +51,15 @@ model Users{
   user_password             String
   user_type                 UserType?  @default(DEFAULT_USER)
   user_registration_date    DateTime  @default(now())
+  user_photo                String?   @default("/images/DEFAULTIMAGE.png")
+  user_bio                  String?
+  user_contact              String?
 
   animals                 Animals[]                                           //se admin,  animais cadastrados
   adoptions               Adoptions[] @relation("AdoptionsByUser")
   adoptions_processed     Adoptions[] @relation("AdoptionsProcessedByAdmin")
   favorites               Favorites[]
+  posts                   Posts[]
 }
 
 
@@ -116,12 +120,25 @@ model Favorites{
   fk_animal_id    Int
   fk_user_id      Int
 
-  animal Animals @relation(fields: [fk_animal_id], references: [animal_id]) 
+  animal Animals @relation(fields: [fk_animal_id], references: [animal_id])
   @@index([fk_animal_id])
 
-  user Users @relation(fields: [fk_user_id], references: [user_id]) 
+  user Users @relation(fields: [fk_user_id], references: [user_id])
   @@index([fk_user_id])
 
   @@unique([fk_user_id, fk_animal_id])
 
+}
+
+
+model Posts{
+  post_id           Int       @id @default(autoincrement())
+  post_content      String
+  post_media        String?
+  post_created_at   DateTime  @default(now())
+
+  fk_author_id      Int
+
+  author Users @relation(fields: [fk_author_id], references: [user_id])
+  @@index([fk_author_id])
 }

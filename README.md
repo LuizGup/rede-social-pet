@@ -84,7 +84,7 @@ npm run dev                # http://localhost:5173
 ## 🗺️ Roadmap (features da rede social)
 
 - [x] Cadastro de usuários e login (JWT)
-- [ ] **Fase 1** — Perfil de usuário (foto, bio, contato) + criação de posts + feed
+- [x] **Fase 1** — Perfil de usuário (foto, bio, contato) + criação de posts + feed
 - [ ] **Fase 2** — Curtidas e comentários nos posts
 - [ ] **Fase 3** — Seguir usuários (feed passa a mostrar quem você segue)
 - [ ] **Fase 4** — Busca de usuários e posts (por texto/hashtag)

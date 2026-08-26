@@ -1,0 +1,76 @@
+.post-card {
+  background-color: var(--branco-puro);
+  border: 1px solid var(--cinza-medio);
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.post-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.post-card-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--azul-claro);
+}
+
+.post-card-author {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.post-card-name {
+  font-weight: 600;
+  color: var(--azul-primario);
+}
+
+.post-card-date {
+  font-size: 0.78rem;
+  color: var(--azul-acinzentado);
+}
+
+.post-card-delete {
+  margin-left: auto;
+  border: none;
+  background: transparent;
+  color: var(--azul-acinzentado);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 8px;
+  border-radius: 6px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.post-card-delete:hover {
+  background-color: var(--cinza-claro);
+  color: #c0392b;
+}
+
+.post-card-content {
+  margin: 0;
+  color: #2b2b2b;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.post-card-media {
+  margin-top: 12px;
+}
+
+.post-card-media img,
+.post-card-media video {
+  width: 100%;
+  max-height: 480px;
+  object-fit: cover;
+  border-radius: 10px;
+}

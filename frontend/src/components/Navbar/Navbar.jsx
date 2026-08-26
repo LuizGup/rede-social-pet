@@ -65,6 +65,9 @@ function Navbar() {
               <Link className="nav-link navbar-link btn btn-link" to={"/animais"}>
                 Adoção
               </Link>
+              <Link className="nav-link navbar-link btn btn-link" to={"/feed"}>
+                Feed
+              </Link>
               <button className="nav-link navbar-link btn btn-link" onClick={() => handleNavigateWithScroll("photo-gallery-section")}>
                 Galeria
               </button>

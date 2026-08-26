@@ -1,0 +1,31 @@
+.feed-main {
+  min-height: 70vh;
+  padding-bottom: 60px;
+  background-color: var(--cinza-claro);
+}
+
+.feed-container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.feed-status {
+  text-align: center;
+  color: var(--azul-acinzentado);
+  margin-top: 24px;
+}
+
+.feed-error {
+  color: #c0392b;
+}
+
+.feed-login-hint {
+  text-align: center;
+  background-color: var(--azul-claro);
+  color: var(--azul-primario);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 24px;
+  font-weight: 500;
+}

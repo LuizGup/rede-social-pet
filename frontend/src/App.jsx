@@ -3,6 +3,7 @@ import Login from "./pages/Login/Login";
 import SignUpUser from "./pages/SignUpUser/SignUpUser";
 import AnimalList from "./pages/AnimalList/AnimalList";
 import AnimalDetails from "./pages/AnimalDetails/AnimalDetail";
+import Feed from "./pages/Feed/Feed";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -23,6 +24,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/sign-up" element={<SignUpUser />} />
             <Route path="/animais" element={<AnimalList />} />
+            <Route path="/feed" element={<Feed />} />
             <Route path="/detalhes-do-animal/:id" element={<AnimalDetails route="/animais" />} />
             <Route path="/adotados/:id" element={<AnimalDetails route="/user" />} />
             <Route path="/admin/animais/adotados/:id" element={<AnimalDetails route="/admin/animais" />} />

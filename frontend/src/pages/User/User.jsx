@@ -51,10 +51,13 @@ function User() {
   };
 
   const handleUpdateUser = async (updatedData) => {
-    // 'updatedData' is now an object like { nome: "New Name" }
+    // 'updatedData' = { nome, foto, bio, contato }
     try {
       const payload = {
         user_name: updatedData.nome,
+        user_photo: updatedData.foto,
+        user_bio: updatedData.bio,
+        user_contact: updatedData.contato,
       };
 
       const updatedUser = await userService.updateUser(
@@ -67,7 +70,7 @@ function User() {
 
       // Fecha o modal
       setShowModal(false);
-      alert("Nome atualizado com sucesso!");
+      alert("Perfil atualizado com sucesso!");
     } catch (err) {
       console.error("Falha ao atualizar dados do usuário:", err);
       setError(
@@ -192,6 +195,13 @@ function User() {
                   <i className="bi bi-person me-2 fs-4 text-primary "></i>
                   <h5 className="card-title user_title mb-0">Meu Perfil</h5>
                 </div>
+                <div className="text-center mb-3">
+                  <img
+                    className="user-avatar"
+                    src={userData?.user_photo || "/images/DEFAULTIMAGE.png"}
+                    alt={userData?.user_name}
+                  />
+                </div>
                 <div className="mb-3">
                   <p className="text-muted small">Nome</p>
                   <p className="fw-semibold">{userData?.user_name}</p>
@@ -199,6 +209,18 @@ function User() {
                 <div className="mb-3">
                   <p className="text-muted small">Email</p>
                   <p className="fw-semibold">{userData?.user_email}</p>
+                </div>
+                <div className="mb-3">
+                  <p className="text-muted small">Bio</p>
+                  <p className="fw-semibold">
+                    {userData?.user_bio || "Nenhuma bio adicionada ainda."}
+                  </p>
+                </div>
+                <div className="mb-3">
+                  <p className="text-muted small">Contato</p>
+                  <p className="fw-semibold">
+                    {userData?.user_contact || "Nenhum contato informado."}
+                  </p>
                 </div>
                 <div className="mb-4">
                   <p className="text-muted small">Tipo de Usuário</p>
@@ -325,6 +347,9 @@ function User() {
         initialData={{
           nome: userData.user_name,
           email: userData.user_email,
+          foto: userData.user_photo || "",
+          bio: userData.user_bio || "",
+          contato: userData.user_contact || "",
         }}
       />
       <DeleteAccountModal

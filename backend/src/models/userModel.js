@@ -31,7 +31,10 @@ const getUserProfileModel = async (user_id) => {
             user_name: true,
             user_email: true,
             user_type: true,
-            user_registration_date: true
+            user_registration_date: true,
+            user_photo: true,
+            user_bio: true,
+            user_contact: true
         }
     })
 }

@@ -4,6 +4,14 @@
     font-size: 2rem;
 }
 
+.user-avatar{
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--azul-claro);
+}
+
 .user-welcome{
     color: var(--azul-primario);
     font-size: 1.2rem;

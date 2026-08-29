@@ -16,7 +16,10 @@ const getFeedModel = async () => {
             post_created_at: 'desc'
         },
         include: {
-            author: authorSelect
+            author: authorSelect,
+            _count: {
+                select: { likes: true, comments: true }
+            }
         }
     });
 };
@@ -31,7 +34,10 @@ const getPostsByUserModel = async (fk_author_id) => {
             post_created_at: 'desc'
         },
         include: {
-            author: authorSelect
+            author: authorSelect,
+            _count: {
+                select: { likes: true, comments: true }
+            }
         }
     });
 };

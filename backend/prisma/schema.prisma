@@ -60,6 +60,8 @@ model Users{
   adoptions_processed     Adoptions[] @relation("AdoptionsProcessedByAdmin")
   favorites               Favorites[]
   posts                   Posts[]
+  likes                   Likes[]
+  comments                Comments[]
 }
 
 
@@ -141,4 +143,40 @@ model Posts{
 
   author Users @relation(fields: [fk_author_id], references: [user_id])
   @@index([fk_author_id])
+
+  likes       Likes[]
+  comments    Comments[]
+}
+
+
+model Likes{
+  like_id       Int       @id @default(autoincrement())
+  like_date     DateTime  @default(now())
+
+  fk_post_id    Int
+  fk_user_id    Int
+
+  post Posts @relation(fields: [fk_post_id], references: [post_id], onDelete: Cascade)
+  @@index([fk_post_id])
+
+  user Users @relation(fields: [fk_user_id], references: [user_id])
+  @@index([fk_user_id])
+
+  @@unique([fk_user_id, fk_post_id])
+}
+
+
+model Comments{
+  comment_id        Int       @id @default(autoincrement())
+  comment_content   String
+  comment_date      DateTime  @default(now())
+
+  fk_post_id        Int
+  fk_user_id        Int
+
+  post Posts @relation(fields: [fk_post_id], references: [post_id], onDelete: Cascade)
+  @@index([fk_post_id])
+
+  user Users @relation(fields: [fk_user_id], references: [user_id])
+  @@index([fk_user_id])
 }

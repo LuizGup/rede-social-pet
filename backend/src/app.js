@@ -20,6 +20,8 @@ const adoptionRoutes = require('./routes/adoptionRoute');
 const favoriteRoutes = require('./routes/favoriteRoute');
 const authRoutes = require('./routes/authRoute');
 const postRoutes = require('./routes/postRoute');
+const likeRoutes = require('./routes/likeRoute');
+const commentRoutes = require('./routes/commentRoute');
 
 // endpoints
 app.use('/api/user', userRoutes);
@@ -28,6 +30,8 @@ app.use('/api', adoptionRoutes);
 app.use(favoriteRoutes);
 app.use("/api/auth", authRoutes);
 app.use(postRoutes);
+app.use(likeRoutes);
+app.use(commentRoutes);
 
 // apenas teste
 app.get('/', (req, res) => {

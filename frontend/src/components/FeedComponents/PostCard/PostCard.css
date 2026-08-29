@@ -74,3 +74,124 @@
   object-fit: cover;
   border-radius: 10px;
 }
+
+.post-card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--cinza-medio);
+}
+
+.post-action-btn {
+  border: none;
+  background: transparent;
+  color: var(--azul-acinzentado);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 8px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.post-action-btn:hover:not(:disabled) {
+  background-color: var(--cinza-claro);
+}
+
+.post-action-btn.liked {
+  color: #e0245e;
+}
+
+.post-action-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.post-card-comments {
+  margin-top: 14px;
+  border-top: 1px solid var(--cinza-medio);
+  padding-top: 12px;
+}
+
+.post-comments-empty {
+  color: var(--azul-acinzentado);
+  font-size: 0.85rem;
+  margin: 0 0 10px;
+}
+
+.post-comment {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.post-comment-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.post-comment-body {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--cinza-claro);
+  border-radius: 10px;
+  padding: 6px 12px;
+  flex-grow: 1;
+}
+
+.post-comment-name {
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--azul-primario);
+}
+
+.post-comment-text {
+  font-size: 0.9rem;
+  color: #2b2b2b;
+  word-break: break-word;
+}
+
+.post-comment-delete {
+  border: none;
+  background: transparent;
+  color: var(--azul-acinzentado);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 6px;
+}
+
+.post-comment-delete:hover {
+  color: #c0392b;
+}
+
+.post-comment-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.post-comment-form input {
+  flex-grow: 1;
+}
+
+.post-comment-form button {
+  background-color: var(--azul-primario);
+  color: var(--branco-puro);
+  border: none;
+  border-radius: 8px;
+  padding: 6px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.post-comment-form button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

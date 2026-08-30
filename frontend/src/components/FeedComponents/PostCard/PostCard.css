@@ -38,6 +38,29 @@
   color: var(--azul-acinzentado);
 }
 
+.post-follow-btn {
+  margin-left: auto;
+  border: 1.5px solid var(--azul-primario);
+  background: transparent;
+  color: var(--azul-primario);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 14px;
+  border-radius: 20px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.post-follow-btn:hover {
+  background-color: var(--azul-primario);
+  color: var(--branco-puro);
+}
+
+.post-follow-btn.following {
+  background-color: var(--azul-primario);
+  color: var(--branco-puro);
+}
+
 .post-card-delete {
   margin-left: auto;
   border: none;
@@ -49,6 +72,11 @@
   padding: 0 8px;
   border-radius: 6px;
   transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* quando há botão de seguir, ele já empurra para a direita; o delete não precisa repetir */
+.post-follow-btn + .post-card-delete {
+  margin-left: 4px;
 }
 
 .post-card-delete:hover {

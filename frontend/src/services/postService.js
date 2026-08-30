@@ -14,6 +14,18 @@ const getFeed = async () => {
 
 
 
+const getFollowingFeed = async () => {
+  try {
+    const response = await api.get('/api/feed/following');
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar o feed de seguidos.", error);
+    throw error;
+  }
+};
+
+
+
 const getPostsByUser = async (user_id) => {
   try {
     const response = await api.get(`/api/user/${user_id}/posts`);
@@ -52,6 +64,7 @@ const deletePost = async (post_id) => {
 
 export default {
   getFeed,
+  getFollowingFeed,
   getPostsByUser,
   createPost,
   deletePost

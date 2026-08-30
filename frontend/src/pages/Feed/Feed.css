@@ -10,6 +10,33 @@
   padding: 0 16px;
 }
 
+.feed-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+  justify-content: center;
+}
+
+.feed-tab {
+  border: none;
+  background: transparent;
+  color: var(--azul-acinzentado);
+  font-weight: 600;
+  padding: 8px 22px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.feed-tab:hover {
+  background-color: var(--cinza-medio);
+}
+
+.feed-tab.active {
+  background-color: var(--azul-primario);
+  color: var(--branco-puro);
+}
+
 .feed-status {
   text-align: center;
   color: var(--azul-acinzentado);

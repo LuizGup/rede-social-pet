@@ -24,6 +24,28 @@ const getFeedModel = async () => {
     });
 };
 
+// feed "Seguindo": só posts de autores que o usuário (follower_id) segue
+const getFollowingFeedModel = async (follower_id) => {
+    return prisma.Posts.findMany({
+        where: {
+            author: {
+                followers: {
+                    some: { fk_follower_id: follower_id }
+                }
+            }
+        },
+        orderBy: {
+            post_created_at: 'desc'
+        },
+        include: {
+            author: authorSelect,
+            _count: {
+                select: { likes: true, comments: true }
+            }
+        }
+    });
+};
+
 // posts de um usuário específico (para a página de perfil)
 const getPostsByUserModel = async (fk_author_id) => {
     return prisma.Posts.findMany({
@@ -84,6 +106,7 @@ const deletePostModel = async (post_id) => {
 
 module.exports = {
     getFeedModel,
+    getFollowingFeedModel,
     getPostsByUserModel,
     getPostByIdModel,
     createPostModel,

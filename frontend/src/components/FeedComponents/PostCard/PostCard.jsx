@@ -3,9 +3,10 @@ import "./PostCard.css";
 import { formatDateTime } from "../../../utils/formatters";
 import commentService from "../../../services/commentService";
 
-function PostCard({ post, currentUserId, isLoggedIn, onDelete, onToggleLike }) {
+function PostCard({ post, currentUserId, isLoggedIn, onDelete, onToggleLike, onToggleFollow }) {
   const author = post.author || {};
   const isAuthor = currentUserId && author.user_id === currentUserId;
+  const canFollow = isLoggedIn && !isAuthor && author.user_id;
 
   const isVideo = post.post_media && /\.(mp4|webm|ogg)$/i.test(post.post_media);
 
@@ -75,6 +76,17 @@ function PostCard({ post, currentUserId, isLoggedIn, onDelete, onToggleLike }) {
           <span className="post-card-name">{author.user_name || "Usuário"}</span>
           <span className="post-card-date">{formatDateTime(post.post_created_at)}</span>
         </div>
+
+        {canFollow && (
+          <button
+            className={`post-follow-btn ${post.isFollowingAuthor ? "following" : ""}`}
+            onClick={() =>
+              onToggleFollow(author.user_id, post.isFollowingAuthor, post.followId)
+            }
+          >
+            {post.isFollowingAuthor ? "Seguindo" : "Seguir"}
+          </button>
+        )}
 
         {isAuthor && (
           <button

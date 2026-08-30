@@ -5,6 +5,7 @@ const authMiddleware = require('../middlewares/authMiddleware');
 
 const {
     getFeedHandler,
+    getFollowingFeedHandler,
     getPostsByUserHandler,
     getPostByIdHandler,
     createPostHandler,
@@ -14,6 +15,7 @@ const {
 
 // leitura (pública)
 router.get('/api/feed', getFeedHandler);
+router.get('/api/feed/following', authMiddleware, getFollowingFeedHandler);
 router.get('/api/user/:fk_author_id/posts', getPostsByUserHandler);
 router.get('/api/post/:post_id', getPostByIdHandler);
 

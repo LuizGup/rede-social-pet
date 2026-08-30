@@ -1,5 +1,6 @@
 const {
     getFeedModel,
+    getFollowingFeedModel,
     getPostsByUserModel,
     getPostByIdModel,
     createPostModel,
@@ -7,13 +8,24 @@ const {
 } = require('../models/postModel');
 
 
-// GET /api/feed  -> lista todos os posts (na Fase 3 passa a filtrar por quem o usuário segue)
+// GET /api/feed  -> lista todos os posts
 const getFeedHandler = async (req, res) => {
     try {
         const feed = await getFeedModel();
         res.status(200).json(feed);
     } catch (error) {
         res.status(500).json({ error: 'Erro ao buscar o feed.' });
+    }
+};
+
+
+// GET /api/feed/following  (protegido) -> só posts de quem o usuário segue
+const getFollowingFeedHandler = async (req, res) => {
+    try {
+        const feed = await getFollowingFeedModel(req.user.user_id);
+        res.status(200).json(feed);
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao buscar o feed de seguidos.' });
     }
 };
 
@@ -89,6 +101,7 @@ const deletePostHandler = async (req, res) => {
 
 module.exports = {
     getFeedHandler,
+    getFollowingFeedHandler,
     getPostsByUserHandler,
     getPostByIdHandler,
     createPostHandler,

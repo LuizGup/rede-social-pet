@@ -62,6 +62,8 @@ model Users{
   posts                   Posts[]
   likes                   Likes[]
   comments                Comments[]
+  following               Follows[] @relation("Following")   // quem este usuário segue
+  followers               Follows[] @relation("Followers")   // quem segue este usuário
 }
 
 
@@ -179,4 +181,21 @@ model Comments{
 
   user Users @relation(fields: [fk_user_id], references: [user_id])
   @@index([fk_user_id])
+}
+
+
+model Follows{
+  follow_id         Int       @id @default(autoincrement())
+  follow_date       DateTime  @default(now())
+
+  fk_follower_id    Int       // quem segue
+  fk_followed_id    Int       // quem é seguido
+
+  follower Users @relation("Following", fields: [fk_follower_id], references: [user_id])
+  @@index([fk_follower_id])
+
+  followed Users @relation("Followers", fields: [fk_followed_id], references: [user_id])
+  @@index([fk_followed_id])
+
+  @@unique([fk_follower_id, fk_followed_id])
 }

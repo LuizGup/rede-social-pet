@@ -87,7 +87,7 @@ npm run dev                # http://localhost:5173
 - [x] **Fase 1** — Perfil de usuário (foto, bio, contato) + criação de posts + feed
 - [x] **Fase 2** — Curtidas e comentários nos posts
 - [x] **Fase 3** — Seguir usuários (feed passa a mostrar quem você segue)
-- [ ] **Fase 4** — Busca de usuários e posts (por texto/hashtag)
+- [x] **Fase 4** — Busca de usuários e posts (por texto/hashtag)
 - [ ] **Fase 5** — Notificações de atividades
 - [ ] **Fase 6** — Chat privado entre usuários
 

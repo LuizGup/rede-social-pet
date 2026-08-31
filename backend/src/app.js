@@ -23,6 +23,7 @@ const postRoutes = require('./routes/postRoute');
 const likeRoutes = require('./routes/likeRoute');
 const commentRoutes = require('./routes/commentRoute');
 const followRoutes = require('./routes/followRoute');
+const searchRoutes = require('./routes/searchRoute');
 
 // endpoints
 app.use('/api/user', userRoutes);
@@ -34,6 +35,7 @@ app.use(postRoutes);
 app.use(likeRoutes);
 app.use(commentRoutes);
 app.use(followRoutes);
+app.use(searchRoutes);
 
 // apenas teste
 app.get('/', (req, res) => {

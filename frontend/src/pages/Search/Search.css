@@ -1,0 +1,126 @@
+.search-main {
+  min-height: 70vh;
+  padding-bottom: 60px;
+  background-color: var(--cinza-claro);
+}
+
+.search-container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.search-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.search-form input {
+  flex-grow: 1;
+}
+
+.search-btn {
+  background-color: var(--azul-primario);
+  color: var(--branco-puro);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 22px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.search-btn:hover {
+  background-color: var(--azul-medio);
+}
+
+.search-status {
+  text-align: center;
+  color: var(--azul-acinzentado);
+  margin-top: 24px;
+}
+
+.search-section {
+  margin-bottom: 28px;
+}
+
+.search-section-title {
+  font-size: 1.1rem;
+  color: var(--azul-primario);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.search-user,
+.search-post {
+  background-color: var(--branco-puro);
+  border: 1px solid var(--cinza-medio);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+
+.search-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.search-user-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--azul-claro);
+}
+
+.search-user-name {
+  font-weight: 600;
+  color: var(--azul-primario);
+  margin: 0;
+}
+
+.search-user-bio {
+  font-size: 0.85rem;
+  color: var(--azul-acinzentado);
+  margin: 0;
+}
+
+.search-post-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.search-post-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.search-post-author {
+  display: block;
+  font-weight: 600;
+  color: var(--azul-primario);
+  font-size: 0.9rem;
+}
+
+.search-post-date {
+  font-size: 0.75rem;
+  color: var(--azul-acinzentado);
+}
+
+.search-post-content {
+  margin: 0 0 8px;
+  color: #2b2b2b;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.search-post-meta {
+  font-size: 0.82rem;
+  color: var(--azul-acinzentado);
+}

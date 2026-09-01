@@ -8,6 +8,22 @@
     column-gap: 40px;
 }
 
+.notif-badge {
+    display: inline-block;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    margin-left: 6px;
+    background-color: #e0245e;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 9px;
+    vertical-align: middle;
+}
+
 .navbar-img {
     height: 100px !important;
     width: auto !important;

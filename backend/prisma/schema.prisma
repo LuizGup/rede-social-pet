@@ -39,9 +39,15 @@ enum AnimalStatus{
 
 
 enum AnimalsCategories{
-  CAT 
+  CAT
   DOG
   ANIMAL
+}
+
+enum NotificationType{
+  LIKE
+  COMMENT
+  FOLLOW
 }
 
 model Users{
@@ -64,6 +70,8 @@ model Users{
   comments                Comments[]
   following               Follows[] @relation("Following")   // quem este usuário segue
   followers               Follows[] @relation("Followers")   // quem segue este usuário
+  notifications_received  Notifications[] @relation("NotificationsReceived")
+  notifications_sent      Notifications[] @relation("NotificationsSent")
 }
 
 
@@ -146,8 +154,9 @@ model Posts{
   author Users @relation(fields: [fk_author_id], references: [user_id])
   @@index([fk_author_id])
 
-  likes       Likes[]
-  comments    Comments[]
+  likes         Likes[]
+  comments      Comments[]
+  notifications Notifications[]
 }
 
 
@@ -198,4 +207,25 @@ model Follows{
   @@index([fk_followed_id])
 
   @@unique([fk_follower_id, fk_followed_id])
+}
+
+
+model Notifications{
+  notification_id     Int               @id @default(autoincrement())
+  notification_type   NotificationType
+  notification_read   Boolean           @default(false)
+  created_at          DateTime          @default(now())
+
+  fk_recipient_id     Int               // quem recebe a notificação
+  fk_actor_id         Int               // quem gerou a ação
+  fk_post_id          Int?              // post relacionado (curtida/comentário)
+
+  recipient Users @relation("NotificationsReceived", fields: [fk_recipient_id], references: [user_id])
+  @@index([fk_recipient_id])
+
+  actor Users @relation("NotificationsSent", fields: [fk_actor_id], references: [user_id])
+  @@index([fk_actor_id])
+
+  post Posts? @relation(fields: [fk_post_id], references: [post_id], onDelete: Cascade)
+  @@index([fk_post_id])
 }

@@ -24,6 +24,7 @@ const likeRoutes = require('./routes/likeRoute');
 const commentRoutes = require('./routes/commentRoute');
 const followRoutes = require('./routes/followRoute');
 const searchRoutes = require('./routes/searchRoute');
+const notificationRoutes = require('./routes/notificationRoute');
 
 // endpoints
 app.use('/api/user', userRoutes);
@@ -36,6 +37,7 @@ app.use(likeRoutes);
 app.use(commentRoutes);
 app.use(followRoutes);
 app.use(searchRoutes);
+app.use(notificationRoutes);
 
 // apenas teste
 app.get('/', (req, res) => {

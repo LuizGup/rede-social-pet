@@ -4,6 +4,8 @@ const {
     addLikeModel,
     removeLikeModel
 } = require('../models/likeModel');
+const { getPostByIdModel } = require('../models/postModel');
+const { createNotificationModel } = require('../models/notificationModel');
 
 
 // GET /api/user/:fk_user_id/likes
@@ -30,6 +32,22 @@ const addLikeHandler = async (req, res) => {
 
     try {
         const newLike = await addLikeModel(parseInt(fk_post_id), fk_user_id);
+
+        // notifica o autor do post (best-effort, não quebra a curtida se falhar)
+        try {
+            const post = await getPostByIdModel(parseInt(fk_post_id));
+            if (post) {
+                await createNotificationModel({
+                    notification_type: 'LIKE',
+                    fk_recipient_id: post.fk_author_id,
+                    fk_actor_id: fk_user_id,
+                    fk_post_id: parseInt(fk_post_id)
+                });
+            }
+        } catch (notifyError) {
+            console.error('Falha ao criar notificação de curtida:', notifyError.message);
+        }
+
         res.status(201).json(newLike);
     } catch (error) {
         // violação de unique (usuário já curtiu esse post)

@@ -1,7 +1,9 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
 import LogoTitulo from '../../assets/LogoTitulo/LogoTitle2.png';
 import Logo3 from '../../assets/Logos/logo3.png/';
+import notificationService from "../../services/notificationService";
 import "./Navbar.css";
 
 function Navbar() {
@@ -12,6 +14,20 @@ function Navbar() {
   // Checamos se o token existe no localStorage.
   // O `!!` transforma o resultado (uma string ou null) em um booleano (true ou false).
   const isLoggedIn = !!localStorage.getItem(import.meta.env.VITE_TOKEN_KEY);
+
+  // contagem de notificações não lidas (atualiza a cada navegação)
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      setUnreadCount(0);
+      return;
+    }
+    notificationService
+      .getUnreadCount()
+      .then((count) => setUnreadCount(count))
+      .catch(() => setUnreadCount(0));
+  }, [isLoggedIn, location.pathname]);
 
 
   const handleNavigateWithScroll = (sectionId) => {
@@ -77,8 +93,14 @@ function Navbar() {
               
               {/* --- 3. RENDERIZAÇÃO CONDICIONAL DOS LINKS --- */}
               {isLoggedIn ? (
-                // Se estiver LOGADO, mostra "Perfil" e "Sair"
+                // Se estiver LOGADO, mostra "Notificações" e "Perfil"
                 <>
+                  <Link className="nav-link navbar-link btn btn-link" to={"/notificacoes"}>
+                    Notificações
+                    {unreadCount > 0 && (
+                      <span className="notif-badge">{unreadCount}</span>
+                    )}
+                  </Link>
                   <Link className="nav-link navbar-link btn btn-link" to={"/user"}>
                     Perfil
                   </Link>

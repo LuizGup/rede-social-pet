@@ -4,6 +4,7 @@ const {
     addFollowModel,
     removeFollowModel
 } = require('../models/followModel');
+const { createNotificationModel } = require('../models/notificationModel');
 
 
 // GET /api/user/:fk_follower_id/following
@@ -34,6 +35,18 @@ const addFollowHandler = async (req, res) => {
 
     try {
         const newFollow = await addFollowModel(fk_follower_id, parseInt(fk_followed_id));
+
+        // notifica quem foi seguido (best-effort)
+        try {
+            await createNotificationModel({
+                notification_type: 'FOLLOW',
+                fk_recipient_id: parseInt(fk_followed_id),
+                fk_actor_id: fk_follower_id
+            });
+        } catch (notifyError) {
+            console.error('Falha ao criar notificação de seguir:', notifyError.message);
+        }
+
         res.status(201).json(newFollow);
     } catch (error) {
         // violação de unique (já segue esse usuário)

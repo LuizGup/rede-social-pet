@@ -4,6 +4,8 @@ const {
     addCommentModel,
     removeCommentModel
 } = require('../models/commentModel');
+const { getPostByIdModel } = require('../models/postModel');
+const { createNotificationModel } = require('../models/notificationModel');
 
 
 // GET /api/post/:fk_post_id/comments
@@ -33,6 +35,22 @@ const addCommentHandler = async (req, res) => {
 
     try {
         const newComment = await addCommentModel(parseInt(fk_post_id), fk_user_id, comment_content.trim());
+
+        // notifica o autor do post (best-effort)
+        try {
+            const post = await getPostByIdModel(parseInt(fk_post_id));
+            if (post) {
+                await createNotificationModel({
+                    notification_type: 'COMMENT',
+                    fk_recipient_id: post.fk_author_id,
+                    fk_actor_id: fk_user_id,
+                    fk_post_id: parseInt(fk_post_id)
+                });
+            }
+        } catch (notifyError) {
+            console.error('Falha ao criar notificação de comentário:', notifyError.message);
+        }
+
         res.status(201).json(newComment);
     } catch (error) {
         res.status(500).json({ error: error.message });

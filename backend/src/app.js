@@ -25,6 +25,7 @@ const commentRoutes = require('./routes/commentRoute');
 const followRoutes = require('./routes/followRoute');
 const searchRoutes = require('./routes/searchRoute');
 const notificationRoutes = require('./routes/notificationRoute');
+const messageRoutes = require('./routes/messageRoute');
 
 // endpoints
 app.use('/api/user', userRoutes);
@@ -38,6 +39,7 @@ app.use(commentRoutes);
 app.use(followRoutes);
 app.use(searchRoutes);
 app.use(notificationRoutes);
+app.use(messageRoutes);
 
 // apenas teste
 app.get('/', (req, res) => {

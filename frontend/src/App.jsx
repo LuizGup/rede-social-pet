@@ -6,6 +6,7 @@ import AnimalDetails from "./pages/AnimalDetails/AnimalDetail";
 import Feed from "./pages/Feed/Feed";
 import Search from "./pages/Search/Search";
 import Notifications from "./pages/Notifications/Notifications";
+import Chat from "./pages/Chat/Chat";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -29,6 +30,8 @@ function App() {
             <Route path="/feed" element={<Feed />} />
             <Route path="/busca" element={<Search />} />
             <Route path="/notificacoes" element={<Notifications />} />
+            <Route path="/chat" element={<Chat />} />
+            <Route path="/chat/:userId" element={<Chat />} />
             <Route path="/detalhes-do-animal/:id" element={<AnimalDetails route="/animais" />} />
             <Route path="/adotados/:id" element={<AnimalDetails route="/user" />} />
             <Route path="/admin/animais/adotados/:id" element={<AnimalDetails route="/admin/animais" />} />

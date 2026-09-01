@@ -101,6 +101,9 @@ function Navbar() {
                       <span className="notif-badge">{unreadCount}</span>
                     )}
                   </Link>
+                  <Link className="nav-link navbar-link btn btn-link" to={"/chat"}>
+                    Mensagens
+                  </Link>
                   <Link className="nav-link navbar-link btn btn-link" to={"/user"}>
                     Perfil
                   </Link>

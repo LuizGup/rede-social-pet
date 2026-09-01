@@ -89,7 +89,7 @@ npm run dev                # http://localhost:5173
 - [x] **Fase 3** — Seguir usuários (feed passa a mostrar quem você segue)
 - [x] **Fase 4** — Busca de usuários e posts (por texto/hashtag)
 - [x] **Fase 5** — Notificações de atividades
-- [ ] **Fase 6** — Chat privado entre usuários
+- [x] **Fase 6** — Chat privado entre usuários
 
 ## 📝 Observações
 

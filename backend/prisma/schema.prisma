@@ -72,6 +72,8 @@ model Users{
   followers               Follows[] @relation("Followers")   // quem segue este usuário
   notifications_received  Notifications[] @relation("NotificationsReceived")
   notifications_sent      Notifications[] @relation("NotificationsSent")
+  messages_sent           Messages[] @relation("MessagesSent")
+  messages_received       Messages[] @relation("MessagesReceived")
 }
 
 
@@ -228,4 +230,21 @@ model Notifications{
 
   post Posts? @relation(fields: [fk_post_id], references: [post_id], onDelete: Cascade)
   @@index([fk_post_id])
+}
+
+
+model Messages{
+  message_id        Int       @id @default(autoincrement())
+  message_content   String
+  message_read      Boolean   @default(false)
+  created_at        DateTime  @default(now())
+
+  fk_sender_id      Int
+  fk_receiver_id    Int
+
+  sender Users @relation("MessagesSent", fields: [fk_sender_id], references: [user_id])
+  @@index([fk_sender_id])
+
+  receiver Users @relation("MessagesReceived", fields: [fk_receiver_id], references: [user_id])
+  @@index([fk_receiver_id])
 }

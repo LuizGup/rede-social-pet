@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import "./Search.css";
 import searchService from "../../services/searchService";
 import { formatDateTime } from "../../utils/formatters";
@@ -12,6 +12,9 @@ function Search() {
   const [results, setResults] = useState({ users: [], posts: [] });
   const [loading, setLoading] = useState(false);
   const [searched, setSearched] = useState(false);
+
+  const isLoggedIn = !!localStorage.getItem(import.meta.env.VITE_TOKEN_KEY);
+  const me = JSON.parse(localStorage.getItem(import.meta.env.VITE_USER_KEY));
 
   useEffect(() => {
     const q = searchParams.get("q") || "";
@@ -87,12 +90,17 @@ function Search() {
                       src={u.user_photo || "/images/DEFAULTIMAGE.png"}
                       alt={u.user_name}
                     />
-                    <div>
+                    <div className="search-user-info">
                       <p className="search-user-name">{u.user_name}</p>
                       {u.user_bio && (
                         <p className="search-user-bio">{u.user_bio}</p>
                       )}
                     </div>
+                    {isLoggedIn && u.user_id !== me?.user_id && (
+                      <Link className="search-chat-btn" to={`/chat/${u.user_id}`}>
+                        Conversar
+                      </Link>
+                    )}
                   </div>
                 ))}
               </section>

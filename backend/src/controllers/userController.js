@@ -73,19 +73,13 @@ const updateUserHandler = async (req, res) => {
     const { user_id } = req.params;
     const { user_name, user_email, user_password, user_photo, user_bio, user_contact } = req.body;
 
-    // 1. Crie um objeto vazio para os dados da atualização
     const dataToUpdate = {};
 
-    // 2. Adicione ao objeto APENAS os campos que foram enviados na requisição
     if (user_name) {
         dataToUpdate.user_name = user_name;
     }
     if (user_email) {
         dataToUpdate.user_email = user_email;
-    }
-    if (user_password) {
-        // Lembre-se de fazer o hash da senha aqui antes de salvar, se necessário!
-        // Ex: dataToUpdate.user_password = await bcrypt.hash(user_password, 10);
     }
     // Campos de perfil social (usamos !== undefined para permitir limpar bio/contato com "")
     if (user_photo !== undefined) {

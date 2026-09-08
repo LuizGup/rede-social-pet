@@ -1,7 +1,6 @@
 const prisma = require('../prisma');
 
 // lista todos os favoritos de um usuário, retornando o nome do animal, 
-// DEPOIS (versão corrigida e eficiente)
 const getAllFavoritesByUserModel = async (fk_user_id) => {
     return prisma.Favorites.findMany({
         where: {
@@ -10,13 +9,13 @@ const getAllFavoritesByUserModel = async (fk_user_id) => {
         select: {
             favorite_id: true,
             favorite_date: true,
-            animal: { // Aqui está a mágica!
+            animal: { 
                 select: {
                     animal_id: true,
                     animal_name: true,
-                    animal_age: true,     // Campo que o front-end precisa
-                    animal_sex: true,     // Campo que o front-end precisa
-                    animal_photo: true    // Campo que o front-end precisa
+                    animal_age: true,     
+                    animal_sex: true,     
+                    animal_photo: true    
                 }
             },
             user: {
@@ -37,7 +36,6 @@ const getAllFavoritesModel = async() => {
         }
     })
 }
-
 
 
 const getFavoriteByIdModel = async(favorite_id) => {

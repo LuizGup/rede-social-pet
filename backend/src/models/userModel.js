@@ -110,11 +110,3 @@ module.exports = {
     updateUserModel,
     deleteUserModel
 }
-
-// traz todos os usuário
-// traz um usuário por ID (incluindo a senha)
-// traz um usuário por ID (exceto a senha)
-// traz um usuário pelo email
-// criar
-// atualizar
-// deletar

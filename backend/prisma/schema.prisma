@@ -19,31 +19,6 @@ enum UserType{
   DEFAULT_USER
 }
 
-enum AnimalSex{
-  FEMALE
-  MALE
-}
-
-
-enum AdoptionStatus{
-  IN_PROGRESS
-  ACCEPTED
-  DECLINED
-}
-
-enum AnimalStatus{
-  AVAILABLE
-  IN_PROCESS_ADOPTION
-  ADOPTED
-}
-
-
-enum AnimalsCategories{
-  CAT
-  DOG
-  ANIMAL
-}
-
 enum NotificationType{
   LIKE
   COMMENT
@@ -61,10 +36,6 @@ model Users{
   user_bio                  String?
   user_contact              String?
 
-  animals                 Animals[]                                           //se admin,  animais cadastrados
-  adoptions               Adoptions[] @relation("AdoptionsByUser")
-  adoptions_processed     Adoptions[] @relation("AdoptionsProcessedByAdmin")
-  favorites               Favorites[]
   posts                   Posts[]
   likes                   Likes[]
   comments                Comments[]
@@ -74,74 +45,6 @@ model Users{
   notifications_sent      Notifications[] @relation("NotificationsSent")
   messages_sent           Messages[] @relation("MessagesSent")
   messages_received       Messages[] @relation("MessagesReceived")
-}
-
-
-model Animals{
-  animal_id                   Int      @id @default(autoincrement())
-  animal_name                 String
-  animal_age                  String
-  animal_sex                  AnimalSex
-  animal_status               AnimalStatus  @default(AVAILABLE)
-  animal_weight               String
-  animal_favorite_food        String
-  animal_description          String
-  animal_category             AnimalsCategories  @default(ANIMAL)
-  animal_registration_date    DateTime  @default(now())
-  animal_photo                String?   @default("/images/DEFAULTIMAGE.png")
-
-  fk_admin_user_id            Int
-
-  admin_user Users @relation(fields: [fk_admin_user_id], references: [user_id]) 
-  @@index([fk_admin_user_id])
-
-  
-
-  favorited_by        Favorites[]
-  adoptions           Adoptions[]
-}
-
-
-
-model Adoptions{
-  adoption_id             Int                 @id @default(autoincrement())
-  adoption_status         AdoptionStatus?      @default(IN_PROGRESS)
-  order_date              DateTime            @default(now())
-  processed_date          DateTime?
-  reason                  String
-
-  fk_animal_id           Int
-  fk_adopting_user_id    Int
-  fk_admin_user_id       Int?
-
-  animal Animals @relation(fields: [fk_animal_id], references: [animal_id]) 
-  @@index([fk_animal_id])
-
-  adopting_user Users @relation("AdoptionsByUser", fields: [fk_adopting_user_id], references: [user_id]) 
-  @@index([fk_adopting_user_id])
-  
-  processed_by_admin_id Users? @relation("AdoptionsProcessedByAdmin", fields: [fk_admin_user_id], references: [user_id]) 
-  @@index([fk_admin_user_id])
-
-  @@unique([fk_animal_id, fk_adopting_user_id])
-}
-
-
-model Favorites{
-  favorite_id       Int        @id @default(autoincrement())
-  favorite_date     DateTime   @default(now())
-
-  fk_animal_id    Int
-  fk_user_id      Int
-
-  animal Animals @relation(fields: [fk_animal_id], references: [animal_id])
-  @@index([fk_animal_id])
-
-  user Users @relation(fields: [fk_user_id], references: [user_id])
-  @@index([fk_user_id])
-
-  @@unique([fk_user_id, fk_animal_id])
-
 }
 
 

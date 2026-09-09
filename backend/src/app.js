@@ -15,9 +15,6 @@ app.use(cors({
 
 // rotas
 const userRoutes = require('./routes/userRoute');
-const animalRoutes = require('./routes/animalRoute');
-const adoptionRoutes = require('./routes/adoptionRoute');
-const favoriteRoutes = require('./routes/favoriteRoute');
 const authRoutes = require('./routes/authRoute');
 const postRoutes = require('./routes/postRoute');
 const likeRoutes = require('./routes/likeRoute');
@@ -29,9 +26,6 @@ const messageRoutes = require('./routes/messageRoute');
 
 // endpoints
 app.use('/api/user', userRoutes);
-app.use('/api/animal', animalRoutes);
-app.use('/api', adoptionRoutes);
-app.use(favoriteRoutes);
 app.use("/api/auth", authRoutes);
 app.use(postRoutes);
 app.use(likeRoutes);
@@ -43,7 +37,7 @@ app.use(messageRoutes);
 
 // apenas teste
 app.get('/', (req, res) => {
-    res.send('Rodando a API da ONG!');
+    res.send('Rodando a API da Rede Social Pet!');
 });
 
 module.exports = app;

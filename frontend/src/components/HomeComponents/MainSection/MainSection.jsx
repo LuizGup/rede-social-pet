@@ -6,16 +6,16 @@ function MainSection() {
   return (
     <section className="home-section">
       <div className="home-section-text">
-        <h1> Adotar é um ato de amor </h1>
-        <h2> Conheça nossos amigos de quatro patas que estão em busca de um lar amoroso. </h2>
+        <h1> A rede social de quem ama pets </h1>
+        <h2> Compartilhe momentos, siga outros tutores e conecte-se com quem também é apaixonado por animais. </h2>
         <CustomBtn
           route="/sign-up"
-          label="Ser membro"
+          label="Criar conta"
           className="btn-lg me-2 mb-2"
         />
         <CustomBtn
           route="/login"
-          label="Já sou membro"
+          label="Já tenho conta"
           className="btn-lg mb-2"
         />
 

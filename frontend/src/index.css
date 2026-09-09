@@ -21,4 +21,16 @@ body{
     padding-right: 60px;
 }
 
+/* Título padrão das páginas (Feed, Buscar, Notificações, etc.) */
+.custom-title{
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.custom-title h1{
+    color: var(--azul-primario);
+    font-weight: bold;
+    font-size: 2rem;
+}
+
 

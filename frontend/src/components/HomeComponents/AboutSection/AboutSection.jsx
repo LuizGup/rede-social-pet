@@ -5,22 +5,22 @@ function AboutSection() {
 
   const aboutItems = [
     {
-      title: "Nossa Missão",
-      text: "A ONG Latidos & Ronrons surgiu a partir da necessidade de espalhar amor, carinho e responsabilidade em forma de quatro patas. Nossa missão é promover o bem-estar animal e incentivar a adoção responsável de cães e gatos que foram abandonados, maltratados ou estão em situação de vulnerabilidade.",
+      title: "O que é a Latidos & Ronrons",
+      text: "A Latidos & Ronrons é uma rede social feita para tutores e apaixonados por pets. Aqui você cria seu perfil, publica sobre seus animais e se conecta com uma comunidade que fala a mesma língua: a do amor pelos bichos.",
       accordion: "flush-collapseOne"
     },
     {
-      title: "Nossa Filosofia",
-      text: "Acreditamos que todo animal merece uma segunda chance e, por isso, trabalhamos incansavelmente para proporcionar a eles cuidados veterinários, alimentação, abrigo seguro e, principalmente, a chance de encontrar um lar amoroso. Para isso, buscamos tornar o processo de adoção simples, acessível e seguro, tanto para os animais quanto para os adotantes.",
+      title: "Como funciona",
+      text: "É simples: crie sua conta, monte seu perfil com foto e bio, e comece a publicar. Você pode curtir e comentar as postagens de outras pessoas, seguir quem você gosta e acompanhar tudo pelo seu feed.",
       accordion: "flush-collapseTwo"
     },
     {
-      title: "Nossas Ações",
-      text: "Além das adoções, a Latidos & Ronrons também atua em campanhas de castração, vacinação e vermifugação, e eventos comunitários como feiras de adoção, palestras e ações de doação.",
+      title: "Nossa comunidade",
+      text: "Siga outros tutores e monte um feed do seu jeito, só com quem você quer acompanhar. Descubra pessoas e publicações pela busca e converse no privado com o chat entre usuários.",
       accordion: "flush-collapseThree"
     }, {
-      title: "Nosso Impacto",
-      text: "Com o apoio de voluntários, doadores e parceiros, seguimos transformando histórias e construindo pontes entre pessoas e animais. Acreditamos que adotar é um ato de amor — e estamos aqui para facilitar esse encontro.",
+      title: "Nosso propósito",
+      text: "Acreditamos que todo momento com um pet merece ser compartilhado. Nosso propósito é aproximar pessoas que amam animais e transformar essa paixão em uma comunidade ativa e acolhedora.",
       accordion: "flush-collapseFour"
     }
   ]

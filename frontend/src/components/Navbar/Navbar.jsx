@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import LogoTitulo from '../../assets/LogoTitulo/LogoTitle2.png';
@@ -7,12 +7,9 @@ import notificationService from "../../services/notificationService";
 import "./Navbar.css";
 
 function Navbar() {
-  const navigate = useNavigate();
   const location = useLocation();
 
-  // --- 1. VERIFICAR SE O USUÁRIO ESTÁ LOGADO ---
-  // Checamos se o token existe no localStorage.
-  // O `!!` transforma o resultado (uma string ou null) em um booleano (true ou false).
+  // usuário logado se o token existir no localStorage
   const isLoggedIn = !!localStorage.getItem(import.meta.env.VITE_TOKEN_KEY);
 
   // contagem de notificações não lidas (atualiza a cada navegação)
@@ -28,20 +25,6 @@ function Navbar() {
       .then((count) => setUnreadCount(count))
       .catch(() => setUnreadCount(0));
   }, [isLoggedIn, location.pathname]);
-
-
-  const handleNavigateWithScroll = (sectionId) => {
-    if (location.pathname !== "/") {
-      navigate("/");
-      setTimeout(() => {
-        const el = document.getElementById(sectionId);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
-      }, 100);
-    } else {
-      const el = document.getElementById(sectionId);
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   return (
       <nav className="header-container navbar navbar-expand-lg sticky-top" id="navbar-container">
@@ -72,28 +55,15 @@ function Navbar() {
           </button>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav ms-auto">
-              <button className="nav-link navbar-link btn btn-link" onClick={() => handleNavigateWithScroll("about")}>
-                Sobre
-              </button>
-              <button className="nav-link navbar-link btn btn-link" onClick={() => handleNavigateWithScroll("programming-section")}>
-                Programação
-              </button>
-              <Link className="nav-link navbar-link btn btn-link" to={"/animais"}>
-                Adoção
-              </Link>
               <Link className="nav-link navbar-link btn btn-link" to={"/feed"}>
                 Feed
               </Link>
               <Link className="nav-link navbar-link btn btn-link" to={"/busca"}>
                 Buscar
               </Link>
-              <button className="nav-link navbar-link btn btn-link" onClick={() => handleNavigateWithScroll("photo-gallery-section")}>
-                Galeria
-              </button>
-              
-              {/* --- 3. RENDERIZAÇÃO CONDICIONAL DOS LINKS --- */}
+
               {isLoggedIn ? (
-                // Se estiver LOGADO, mostra "Notificações" e "Perfil"
+                // Logado: notificações, mensagens e perfil
                 <>
                   <Link className="nav-link navbar-link btn btn-link" to={"/notificacoes"}>
                     Notificações
@@ -109,8 +79,15 @@ function Navbar() {
                   </Link>
                 </>
               ) : (
-                // Se NÃO estiver logado, mostra nada, pois o botao de login ja existe
-                <></>
+                // Deslogado: entrar e cadastrar
+                <>
+                  <Link className="nav-link navbar-link btn btn-link" to={"/login"}>
+                    Entrar
+                  </Link>
+                  <Link className="nav-link navbar-link btn btn-link" to={"/sign-up"}>
+                    Cadastrar
+                  </Link>
+                </>
               )}
             </div>
           </div>

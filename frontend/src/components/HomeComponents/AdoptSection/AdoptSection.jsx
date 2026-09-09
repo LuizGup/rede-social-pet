@@ -13,14 +13,13 @@ function AdoptSection() {
             <img src={Heart} alt="Ícone de coração" />
           </div>
           <div className="adopt-content">
-            <h1>Pronto para Adotar?</h1>
+            <h1>Pronto para fazer parte?</h1>
             <p>
-              Nossos amigos de quatro patas estão esperando por você! Conheça os
-              animais disponíveis para adoção e encontre seu novo companheiro de
-              vida.
+              Crie sua conta e junte-se à comunidade! Compartilhe a rotina do seu
+              pet, siga outros tutores e acompanhe tudo pelo seu feed.
             </p>
-            <Link className="btn btn-lg btn-adotar" to={"/animais"}>Ver animais disponíveis <img src={Arrow}/></Link>
-            <span>+50 animais já encontraram um lar amoroso</span>
+            <Link className="btn btn-lg btn-adotar" to={"/sign-up"}>Criar minha conta <img src={Arrow}/></Link>
+            <span>Faça parte da maior comunidade de amantes de pets</span>
           </div>
         </div>
       </div>

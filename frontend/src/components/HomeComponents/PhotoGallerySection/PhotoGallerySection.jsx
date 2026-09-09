@@ -21,8 +21,7 @@ function PhotoGallerySection() {
       <div className="photo-gallery-section-text">
         <h3>Galeria</h3>
         <p>
-          Conheça alguns dos nossos amigos de quatro patas que estão disponíveis
-          para adoção e veja registros das nossas atividades.
+          Um pouquinho dos pets que fazem parte da nossa comunidade.
         </p>
       </div>
 
@@ -46,9 +45,9 @@ function PhotoGallerySection() {
       </div>
 
       <CustomBtn
-        route="/animais"
+        route="/feed"
         className="custom-btn-mais-animais"
-        label="Veja mais animais disponíveis"
+        label="Ver o feed da comunidade"
         icon="bi bi-arrow-up-right-circle"
       />
     </section>

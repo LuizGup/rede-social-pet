@@ -2,7 +2,6 @@ const {
     getAllUsersModel,
     getUserByIdModel,
     getUserProfileModel,
-    createUserModel,
     updateUserModel,
     deleteUserModel
 } = require('../models/userModel');
@@ -51,22 +50,6 @@ const getUserProfileHandler = async (req, res) => {
     }
 };
 
-
-
-const createUserHandler = async (req, res) => {
-    const { user_name, user_email, user_password, user_type } = req.body;
-
-    if (!user_name || !user_email || !user_password) {
-        return res.status(400).json({ error: 'Todos os dados são obrigatórios.' });
-    }
-
-    try {
-        const newUser = await createUserModel(user_name, user_email, user_password, user_type);
-        res.status(201).json(newUser);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-}
 
 
 const updateUserHandler = async (req, res) => {
@@ -124,7 +107,6 @@ module.exports = {
     getAllUsersHandler,
     getUserByIdHandler,
     getUserProfileHandler,
-    createUserHandler,
     updateUserHandler,
     deleteUserHandler
 }

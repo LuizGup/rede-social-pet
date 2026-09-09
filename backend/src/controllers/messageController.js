@@ -6,7 +6,7 @@ const {
 } = require('../models/messageModel');
 
 
-// GET /api/conversations  (protegido) -> lista de conversas do usuário
+// GET /api/conversations -> lista de conversas do usuário
 const getConversationsHandler = async (req, res) => {
     try {
         const conversations = await getConversationsModel(req.user.user_id);
@@ -17,14 +17,13 @@ const getConversationsHandler = async (req, res) => {
 };
 
 
-// GET /api/messages/:other_user_id  (protegido) -> conversa com um usuário
+// GET /api/messages/:other_user_id -> conversa com um usuário
 const getConversationHandler = async (req, res) => {
     const otherId = parseInt(req.params.other_user_id);
     const myId = req.user.user_id;
 
     try {
         const messages = await getConversationModel(myId, otherId);
-        // ao abrir, marca como lidas as mensagens recebidas
         await markConversationReadModel(myId, otherId);
         res.status(200).json(messages);
     } catch (error) {
@@ -33,7 +32,7 @@ const getConversationHandler = async (req, res) => {
 };
 
 
-// POST /api/message  (protegido) -> envia mensagem
+// POST /api/message -> envia mensagem
 const sendMessageHandler = async (req, res) => {
     const { fk_receiver_id, message_content } = req.body;
     const fk_sender_id = req.user.user_id;

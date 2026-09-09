@@ -11,7 +11,7 @@ const authorSelect = {
 
 // comentários de um post, do mais antigo para o mais novo
 const getCommentsByPostModel = async (fk_post_id) => {
-    return prisma.Comments.findMany({
+    return prisma.comments.findMany({
         where: {
             fk_post_id: fk_post_id
         },
@@ -25,7 +25,7 @@ const getCommentsByPostModel = async (fk_post_id) => {
 };
 
 const getCommentByIdModel = async (comment_id) => {
-    return prisma.Comments.findUnique({
+    return prisma.comments.findUnique({
         where: {
             comment_id: comment_id
         }
@@ -34,7 +34,7 @@ const getCommentByIdModel = async (comment_id) => {
 
 // corresponde ao create
 const addCommentModel = async (fk_post_id, fk_user_id, comment_content) => {
-    return prisma.Comments.create({
+    return prisma.comments.create({
         data: {
             fk_post_id: fk_post_id,
             fk_user_id: fk_user_id,
@@ -54,7 +54,7 @@ const removeCommentModel = async (comment_id) => {
         throw new Error("Comentário não encontrado.");
     }
 
-    return prisma.Comments.delete({
+    return prisma.comments.delete({
         where: {
             comment_id: comment_id
         }

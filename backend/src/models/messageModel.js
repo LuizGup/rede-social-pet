@@ -10,7 +10,7 @@ const partnerSelect = {
 
 // corresponde ao create
 const createMessageModel = async (fk_sender_id, fk_receiver_id, message_content) => {
-    return prisma.Messages.create({
+    return prisma.messages.create({
         data: {
             fk_sender_id,
             fk_receiver_id,
@@ -21,7 +21,7 @@ const createMessageModel = async (fk_sender_id, fk_receiver_id, message_content)
 
 // conversa entre dois usuários (ordem cronológica)
 const getConversationModel = async (userA, userB) => {
-    return prisma.Messages.findMany({
+    return prisma.messages.findMany({
         where: {
             OR: [
                 { fk_sender_id: userA, fk_receiver_id: userB },
@@ -36,7 +36,7 @@ const getConversationModel = async (userA, userB) => {
 
 // marca como lidas as mensagens que o outro usuário enviou para mim
 const markConversationReadModel = async (myId, otherId) => {
-    return prisma.Messages.updateMany({
+    return prisma.messages.updateMany({
         where: {
             fk_sender_id: otherId,
             fk_receiver_id: myId,
@@ -50,7 +50,7 @@ const markConversationReadModel = async (myId, otherId) => {
 
 // lista de conversas: para cada parceiro, a última mensagem trocada
 const getConversationsModel = async (userId) => {
-    const messages = await prisma.Messages.findMany({
+    const messages = await prisma.messages.findMany({
         where: {
             OR: [
                 { fk_sender_id: userId },

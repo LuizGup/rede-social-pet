@@ -5,7 +5,7 @@ const {
 } = require('../models/notificationModel');
 
 
-// GET /api/notifications  (protegido)
+// GET /api/notifications 
 const getNotificationsHandler = async (req, res) => {
     try {
         const notifications = await getNotificationsByUserModel(req.user.user_id);
@@ -16,7 +16,7 @@ const getNotificationsHandler = async (req, res) => {
 };
 
 
-// GET /api/notifications/unread-count  (protegido)
+// GET /api/notifications/unread-count
 const getUnreadCountHandler = async (req, res) => {
     try {
         const count = await getUnreadCountModel(req.user.user_id);
@@ -27,7 +27,7 @@ const getUnreadCountHandler = async (req, res) => {
 };
 
 
-// PUT /api/notifications/read  (protegido) -> marca todas como lidas
+// PUT /api/notifications/read -> marca todas como lidas
 const markAllReadHandler = async (req, res) => {
     try {
         await markAllReadModel(req.user.user_id);

@@ -71,7 +71,7 @@ const createUserHandler = async (req, res) => {
 
 const updateUserHandler = async (req, res) => {
     const { user_id } = req.params;
-    const { user_name, user_email, user_password, user_photo, user_bio, user_contact } = req.body;
+    const { user_name, user_email, user_photo, user_bio, user_contact } = req.body;
 
     const dataToUpdate = {};
 
@@ -81,7 +81,6 @@ const updateUserHandler = async (req, res) => {
     if (user_email) {
         dataToUpdate.user_email = user_email;
     }
-    // Campos de perfil social (usamos !== undefined para permitir limpar bio/contato com "")
     if (user_photo !== undefined) {
         dataToUpdate.user_photo = user_photo;
     }
@@ -92,13 +91,11 @@ const updateUserHandler = async (req, res) => {
         dataToUpdate.user_contact = user_contact;
     }
 
-    // 3. Verifique se pelo menos UM campo foi enviado para atualização
     if (Object.keys(dataToUpdate).length === 0) {
         return res.status(400).json({ error: "Nenhum dado para atualizar foi fornecido." });
     }
 
     try {
-        // 4. Passe o objeto dinâmico para a função do model
         const updatedUser = await updateUserModel(parseInt(user_id), dataToUpdate);
         res.status(200).json(updatedUser);
     } catch (error) {
@@ -120,8 +117,6 @@ const deleteUserHandler = async (req, res) => {
         res.status(500).json({ error: 'Erro ao adicionar usuário.' });
     }
 }
-
-
 
 
 

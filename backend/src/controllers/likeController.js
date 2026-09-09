@@ -21,7 +21,7 @@ const getLikesByUserHandler = async (req, res) => {
 };
 
 
-// POST /api/like  (protegido) -> curtir com o usuário vindo do token
+// POST /api/like -> curtir com o usuário vindo do token
 const addLikeHandler = async (req, res) => {
     const { fk_post_id } = req.body;
     const fk_user_id = req.user.user_id;
@@ -33,7 +33,6 @@ const addLikeHandler = async (req, res) => {
     try {
         const newLike = await addLikeModel(parseInt(fk_post_id), fk_user_id);
 
-        // notifica o autor do post (best-effort, não quebra a curtida se falhar)
         try {
             const post = await getPostByIdModel(parseInt(fk_post_id));
             if (post) {
@@ -50,7 +49,6 @@ const addLikeHandler = async (req, res) => {
 
         res.status(201).json(newLike);
     } catch (error) {
-        // violação de unique (usuário já curtiu esse post)
         if (error.code === 'P2002') {
             return res.status(409).json({ error: 'Você já curtiu este post.' });
         }
@@ -59,7 +57,7 @@ const addLikeHandler = async (req, res) => {
 };
 
 
-// DELETE /api/like/:like_id  (protegido) -> só quem curtiu pode descurtir
+// DELETE /api/like/:like_id  -> só quem curtiu pode descurtir
 const removeLikeHandler = async (req, res) => {
     const like_id = parseInt(req.params.like_id);
 

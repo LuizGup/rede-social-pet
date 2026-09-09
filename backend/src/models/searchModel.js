@@ -2,7 +2,7 @@ const prisma = require('../prisma');
 
 // busca usuários por nome (case-insensitive)
 const searchUsersModel = async (term) => {
-    return prisma.Users.findMany({
+    return prisma.users.findMany({
         where: {
             user_name: {
                 contains: term,
@@ -21,7 +21,7 @@ const searchUsersModel = async (term) => {
 
 // busca posts por conteúdo/hashtag (case-insensitive)
 const searchPostsModel = async (term) => {
-    return prisma.Posts.findMany({
+    return prisma.posts.findMany({
         where: {
             post_content: {
                 contains: term,

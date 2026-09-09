@@ -36,7 +36,6 @@ const addFollowHandler = async (req, res) => {
     try {
         const newFollow = await addFollowModel(fk_follower_id, parseInt(fk_followed_id));
 
-        // notifica quem foi seguido (best-effort)
         try {
             await createNotificationModel({
                 notification_type: 'FOLLOW',
@@ -49,7 +48,6 @@ const addFollowHandler = async (req, res) => {
 
         res.status(201).json(newFollow);
     } catch (error) {
-        // violação de unique (já segue esse usuário)
         if (error.code === 'P2002') {
             return res.status(409).json({ error: 'Você já segue este usuário.' });
         }
@@ -58,7 +56,7 @@ const addFollowHandler = async (req, res) => {
 };
 
 
-// DELETE /api/follow/:follow_id  (protegido) -> só o próprio seguidor pode deixar de seguir
+// DELETE /api/follow/:follow_id  -> só o próprio seguidor pode deixar de seguir
 const removeFollowHandler = async (req, res) => {
     const follow_id = parseInt(req.params.follow_id);
 

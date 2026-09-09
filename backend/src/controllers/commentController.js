@@ -21,7 +21,7 @@ const getCommentsByPostHandler = async (req, res) => {
 };
 
 
-// POST /api/comment  (protegido) -> comenta com o usuário vindo do token
+// POST /api/comment  -> comenta com o usuário vindo do token
 const addCommentHandler = async (req, res) => {
     const { fk_post_id, comment_content } = req.body;
     const fk_user_id = req.user.user_id;
@@ -36,7 +36,7 @@ const addCommentHandler = async (req, res) => {
     try {
         const newComment = await addCommentModel(parseInt(fk_post_id), fk_user_id, comment_content.trim());
 
-        // notifica o autor do post (best-effort)
+        // notifica o autor do post
         try {
             const post = await getPostByIdModel(parseInt(fk_post_id));
             if (post) {
@@ -58,7 +58,7 @@ const addCommentHandler = async (req, res) => {
 };
 
 
-// DELETE /api/comment/:comment_id  (protegido) -> só o autor pode apagar
+// DELETE /api/comment/:comment_id  -> só o autor pode apagar
 const removeCommentHandler = async (req, res) => {
     const comment_id = parseInt(req.params.comment_id);
 

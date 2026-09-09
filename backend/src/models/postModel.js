@@ -11,7 +11,7 @@ const authorSelect = {
 
 // feed: todos os posts, do mais novo para o mais antigo, com o autor embutido
 const getFeedModel = async () => {
-    return prisma.Posts.findMany({
+    return prisma.posts.findMany({
         orderBy: {
             post_created_at: 'desc'
         },
@@ -26,7 +26,7 @@ const getFeedModel = async () => {
 
 // feed "Seguindo": só posts de autores que o usuário (follower_id) segue
 const getFollowingFeedModel = async (follower_id) => {
-    return prisma.Posts.findMany({
+    return prisma.posts.findMany({
         where: {
             author: {
                 followers: {
@@ -48,7 +48,7 @@ const getFollowingFeedModel = async (follower_id) => {
 
 // posts de um usuário específico (para a página de perfil)
 const getPostsByUserModel = async (fk_author_id) => {
-    return prisma.Posts.findMany({
+    return prisma.posts.findMany({
         where: {
             fk_author_id: fk_author_id
         },
@@ -65,7 +65,7 @@ const getPostsByUserModel = async (fk_author_id) => {
 };
 
 const getPostByIdModel = async (post_id) => {
-    return prisma.Posts.findUnique({
+    return prisma.posts.findUnique({
         where: {
             post_id: post_id
         },
@@ -77,7 +77,7 @@ const getPostByIdModel = async (post_id) => {
 
 // corresponde ao create
 const createPostModel = async (fk_author_id, post_content, post_media) => {
-    return prisma.Posts.create({
+    return prisma.posts.create({
         data: {
             fk_author_id: fk_author_id,
             post_content: post_content,
@@ -97,7 +97,7 @@ const deletePostModel = async (post_id) => {
         throw new Error("Post não encontrado.");
     }
 
-    return prisma.Posts.delete({
+    return prisma.posts.delete({
         where: {
             post_id: post_id
         }

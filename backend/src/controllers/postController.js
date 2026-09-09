@@ -19,7 +19,7 @@ const getFeedHandler = async (req, res) => {
 };
 
 
-// GET /api/feed/following  (protegido) -> só posts de quem o usuário segue
+// GET /api/feed/following -> só posts de quem o usuário segue
 const getFollowingFeedHandler = async (req, res) => {
     try {
         const feed = await getFollowingFeedModel(req.user.user_id);
@@ -59,7 +59,7 @@ const getPostByIdHandler = async (req, res) => {
 };
 
 
-// POST /api/post  (protegido) -> cria post com o autor vindo do token
+// POST /api/post -> cria post com o autor vindo do token
 const createPostHandler = async (req, res) => {
     const { post_content, post_media } = req.body;
     const fk_author_id = req.user.user_id;
@@ -77,7 +77,7 @@ const createPostHandler = async (req, res) => {
 };
 
 
-// DELETE /api/post/:post_id  (protegido) -> só o autor pode apagar
+// DELETE /api/post/:post_id -> só o autor pode apagar
 const deletePostHandler = async (req, res) => {
     const post_id = parseInt(req.params.post_id);
 

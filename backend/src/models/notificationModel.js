@@ -6,7 +6,7 @@ const createNotificationModel = async ({ notification_type, fk_recipient_id, fk_
         return null;
     }
 
-    return prisma.Notifications.create({
+    return prisma.notifications.create({
         data: {
             notification_type,
             fk_recipient_id,
@@ -18,7 +18,7 @@ const createNotificationModel = async ({ notification_type, fk_recipient_id, fk_
 
 // notificações recebidas por um usuário (mais novas primeiro), com dados do autor
 const getNotificationsByUserModel = async (fk_recipient_id) => {
-    return prisma.Notifications.findMany({
+    return prisma.notifications.findMany({
         where: {
             fk_recipient_id: fk_recipient_id
         },
@@ -39,7 +39,7 @@ const getNotificationsByUserModel = async (fk_recipient_id) => {
 };
 
 const getUnreadCountModel = async (fk_recipient_id) => {
-    return prisma.Notifications.count({
+    return prisma.notifications.count({
         where: {
             fk_recipient_id: fk_recipient_id,
             notification_read: false
@@ -48,7 +48,7 @@ const getUnreadCountModel = async (fk_recipient_id) => {
 };
 
 const markAllReadModel = async (fk_recipient_id) => {
-    return prisma.Notifications.updateMany({
+    return prisma.notifications.updateMany({
         where: {
             fk_recipient_id: fk_recipient_id,
             notification_read: false

@@ -1,10 +1,9 @@
 const prisma = require('../prisma');
-const bcrypt = require("bcryptjs"); //criptografa as senhas antes de salvar/atualizar
-
+const bcrypt = require("bcryptjs"); 
 
 
 const getAllUsersModel = async () => {
-    return prisma.Users.findMany({
+    return prisma.users.findMany({
         orderBy: {
             user_id: 'asc'
         }
@@ -13,7 +12,7 @@ const getAllUsersModel = async () => {
 
 //traz todas as infomações do usuário(incluindo a senha)
 const getUserByIdModel = async (user_id) => {
-    return prisma.Users.findUnique({
+    return prisma.users.findUnique({
         where: {
             user_id: user_id
         }
@@ -22,7 +21,7 @@ const getUserByIdModel = async (user_id) => {
 
 //traz todas as infomações do usuário (exceto a senha)
 const getUserProfileModel = async (user_id) => {
-    return prisma.Users.findUnique({
+    return prisma.users.findUnique({
         where: {
             user_id: user_id
         },
@@ -41,7 +40,7 @@ const getUserProfileModel = async (user_id) => {
 
 //para a função de login
 const getUserByEmailModel = async (user_email) => {
-    return prisma.Users.findUnique({
+    return prisma.users.findUnique({
         where: {
             user_email: user_email
         }
@@ -50,9 +49,8 @@ const getUserByEmailModel = async (user_email) => {
 
 
 const createUserModel = async (user_name, user_email, user_password, user_type) => {
-    const hashedPassword = await bcrypt.hash(user_password, 10); //criptografa a senha
-
-    return prisma.Users.create({
+    const hashedPassword = await bcrypt.hash(user_password, 10);
+    return prisma.users.create({
         data: {
             user_name: user_name,
             user_email: user_email,
@@ -70,16 +68,15 @@ const updateUserModel = async (user_id, dataToUpdate) => { // 1. Recebe o ID e u
         throw new Error("Usuário não encontrado");
     }
 
-    // 2. Se uma nova senha foi enviada no objeto, criptografa ela
     if (dataToUpdate.user_password) {
         dataToUpdate.user_password = await bcrypt.hash(dataToUpdate.user_password, 10);
     }
 
-    return prisma.Users.update({
+    return prisma.users.update({
         where: {
             user_id: user_id
         },
-        data: dataToUpdate // 3. Passa o objeto de dados diretamente para o Prisma
+        data: dataToUpdate 
     });
 };
 
@@ -91,14 +88,12 @@ const deleteUserModel = async (user_id) => {
         throw new Error("Usuário não encontrado");
     }
 
-    return prisma.Users.delete({
+    return prisma.users.delete({
         where: {
             user_id: user_id
         }
     })
 }
-
-
 
 
 module.exports = {

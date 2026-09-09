@@ -2,7 +2,7 @@ const prisma = require('../prisma');
 
 // curtidas de um usuário (para o front marcar quais posts já foram curtidos)
 const getLikesByUserModel = async (fk_user_id) => {
-    return prisma.Likes.findMany({
+    return prisma.likes.findMany({
         where: {
             fk_user_id: fk_user_id
         },
@@ -14,7 +14,7 @@ const getLikesByUserModel = async (fk_user_id) => {
 };
 
 const getLikeByIdModel = async (like_id) => {
-    return prisma.Likes.findUnique({
+    return prisma.likes.findUnique({
         where: {
             like_id: like_id
         }
@@ -23,7 +23,7 @@ const getLikeByIdModel = async (like_id) => {
 
 // corresponde ao create
 const addLikeModel = async (fk_post_id, fk_user_id) => {
-    return prisma.Likes.create({
+    return prisma.likes.create({
         data: {
             fk_post_id: fk_post_id,
             fk_user_id: fk_user_id
@@ -39,7 +39,7 @@ const removeLikeModel = async (like_id) => {
         throw new Error("Curtida não encontrada.");
     }
 
-    return prisma.Likes.delete({
+    return prisma.likes.delete({
         where: {
             like_id: like_id
         }

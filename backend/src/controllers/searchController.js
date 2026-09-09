@@ -4,7 +4,6 @@ const {
 } = require('../models/searchModel');
 
 
-// GET /api/search?q=termo  -> { users: [...], posts: [...] }
 const searchHandler = async (req, res) => {
     const term = (req.query.q || '').trim();
 

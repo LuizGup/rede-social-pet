@@ -2,7 +2,7 @@ const prisma = require('../prisma');
 
 // quem um usuário segue (para o front marcar os botões "Seguindo")
 const getFollowingByUserModel = async (fk_follower_id) => {
-    return prisma.Follows.findMany({
+    return prisma.follows.findMany({
         where: {
             fk_follower_id: fk_follower_id
         },
@@ -14,7 +14,7 @@ const getFollowingByUserModel = async (fk_follower_id) => {
 };
 
 const getFollowByIdModel = async (follow_id) => {
-    return prisma.Follows.findUnique({
+    return prisma.follows.findUnique({
         where: {
             follow_id: follow_id
         }
@@ -23,7 +23,7 @@ const getFollowByIdModel = async (follow_id) => {
 
 // corresponde ao create
 const addFollowModel = async (fk_follower_id, fk_followed_id) => {
-    return prisma.Follows.create({
+    return prisma.follows.create({
         data: {
             fk_follower_id: fk_follower_id,
             fk_followed_id: fk_followed_id
@@ -39,7 +39,7 @@ const removeFollowModel = async (follow_id) => {
         throw new Error("Relação de seguir não encontrada.");
     }
 
-    return prisma.Follows.delete({
+    return prisma.follows.delete({
         where: {
             follow_id: follow_id
         }

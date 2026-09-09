@@ -2,7 +2,7 @@
 
 Rede social com foco em pets, desenvolvida como entrega do **Desafio 1 (Full Stack — nível iniciante)** da trilha de estágio do Atlântico.
 
-O projeto nasceu a partir de uma aplicação de adoção de animais e está sendo evoluído para uma rede social completa: usuários criam perfil, publicam posts sobre seus pets, curtem, comentam, seguem outros usuários, conversam por chat privado e recebem notificações.
+Aplicação full-stack completa: os usuários criam um perfil, publicam posts sobre seus pets, curtem e comentam publicações, seguem outros usuários, buscam pessoas e posts, recebem notificações de atividades e conversam por chat privado.
 
 ## 🧱 Stack
 
@@ -69,9 +69,14 @@ cp frontend/.env.example frontend/.env
 ```bash
 cd backend
 npm install
-npx prisma migrate dev     # cria o banco + aplica as migrations
+npx prisma migrate dev     # cria o banco + aplica as migrations (e roda o seed)
+npm run seed               # (opcional) popula/reseta os dados de demonstração
 npm run dev                # http://localhost:3000
 ```
+
+> O `npm run seed` popula o banco com dados de exemplo (usuários, posts, curtidas,
+> comentários, seguidores, notificações e chat). Contas criadas — senha `123456`:
+> `ana@latidos.com`, `beto@latidos.com`, `carla@latidos.com`.
 
 ### 3. Frontend
 
@@ -81,17 +86,20 @@ npm install
 npm run dev                # http://localhost:5173
 ```
 
-## 🗺️ Roadmap (features da rede social)
+## ✨ Funcionalidades
 
-- [x] Cadastro de usuários e login (JWT)
-- [x] **Fase 1** — Perfil de usuário (foto, bio, contato) + criação de posts + feed
-- [x] **Fase 2** — Curtidas e comentários nos posts
-- [x] **Fase 3** — Seguir usuários (feed passa a mostrar quem você segue)
-- [x] **Fase 4** — Busca de usuários e posts (por texto/hashtag)
-- [x] **Fase 5** — Notificações de atividades
-- [x] **Fase 6** — Chat privado entre usuários
+- ✅ **Cadastro e login** com autenticação via JWT
+- ✅ **Perfil** de usuário com foto, bio e contato
+- ✅ **Posts** com texto, imagem e vídeo
+- ✅ **Curtidas e comentários** nas publicações
+- ✅ **Feed** com abas *Todos* e *Seguindo*
+- ✅ **Seguir** outros usuários
+- ✅ **Busca** de usuários e posts (por texto ou `#hashtag`)
+- ✅ **Notificações** de curtidas, comentários e novos seguidores
+- ✅ **Chat privado** entre usuários
 
 ## 📝 Observações
 
 - O banco usa **PostgreSQL** (mesma categoria relacional de MySQL, sugerido no desafio).
 - O CLI do Prisma está fixado na **v6** para casar com o `@prisma/client` (evitando o breaking change da v7).
+- O projeto reaproveitou a base de uma aplicação de adoção própria, evoluída e enxugada para uma rede social.

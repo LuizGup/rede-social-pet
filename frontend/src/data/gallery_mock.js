@@ -9,7 +9,7 @@ import Thor from '../assets/PhotoGallery/thor_porte_medio.jpg'
 import Nina from '../assets/PhotoGallery/nina_gata_cinza.jpg'
 import Rex from '../assets/PhotoGallery/rex-cachorro.jpg'
 
-export const animal_adoption_mock = [
+export const gallery_mock = [
     {
         id: 1,
         animalName: "Luna",
@@ -142,4 +142,4 @@ export const animal_adoption_mock = [
     }
 ];
 
-export default animal_adoption_mock;
+export default gallery_mock;

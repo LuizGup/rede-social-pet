@@ -1,6 +1,0 @@
-/* largura fixa da sidebar */
-.sidebar-container {
-  width: 280px;
-  min-height: 100vh; /* ocupa altura toda */
-  border-right: 1px solid #dee2e6; /* opcional, dá um destaque */
-}

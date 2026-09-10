@@ -29,7 +29,6 @@ const getUserProfileModel = async (user_id) => {
             user_id: true,
             user_name: true,
             user_email: true,
-            user_type: true,
             user_registration_date: true,
             user_photo: true,
             user_bio: true,
@@ -48,14 +47,13 @@ const getUserByEmailModel = async (user_email) => {
 }
 
 
-const createUserModel = async (user_name, user_email, user_password, user_type) => {
+const createUserModel = async (user_name, user_email, user_password) => {
     const hashedPassword = await bcrypt.hash(user_password, 10);
     return prisma.users.create({
         data: {
             user_name: user_name,
             user_email: user_email,
-            user_password: hashedPassword,
-            user_type: user_type
+            user_password: hashedPassword
         }
     })
 }

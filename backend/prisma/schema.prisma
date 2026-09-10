@@ -14,11 +14,6 @@ datasource db {
 }
 
 
-enum UserType{
-  ADMIN_USER
-  DEFAULT_USER
-}
-
 enum NotificationType{
   LIKE
   COMMENT
@@ -30,7 +25,6 @@ model Users{
   user_name                 String
   user_email                String    @unique
   user_password             String
-  user_type                 UserType?  @default(DEFAULT_USER)
   user_registration_date    DateTime  @default(now())
   user_photo                String?   @default("/images/DEFAULTIMAGE.png")
   user_bio                  String?

@@ -56,6 +56,10 @@ const updateUserHandler = async (req, res) => {
     const { user_id } = req.params;
     const { user_name, user_email, user_photo, user_bio, user_contact } = req.body;
 
+    if (req.user.user_id !== parseInt(user_id)){
+        return res.status(403).json({ error: "Você não tem permissão para atualizar este usuário." });
+    }
+
     const dataToUpdate = {};
 
     if (user_name) {
@@ -89,6 +93,10 @@ const updateUserHandler = async (req, res) => {
 
 const deleteUserHandler = async (req, res) => {
     const user_id = parseInt(req.params.user_id);
+
+    if (req.user.user_id !== user_id) {
+        return res.status(403).json({ error: "Você não tem permissão para deletar este usuário." });
+    }
 
     try {
         await deleteUserModel(user_id);
